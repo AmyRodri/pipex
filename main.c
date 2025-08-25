@@ -6,7 +6,7 @@
 /*   By: amyrodri <amyrodri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/25 11:08:15 by amyrodri          #+#    #+#             */
-/*   Updated: 2025/08/25 15:37:55 by amyrodri         ###   ########.fr       */
+/*   Updated: 2025/08/25 16:23:36 by amyrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,11 +52,7 @@ int	main(int num, char **args)
 		}
 		else if (pid == 0)
 		{
-			char *comand = ft_strjoin("/bin/", cmd1[0]);
-			char *test[] = {comand, cmd1[1], NULL};
-			char *envp[] = {NULL};
-
-			if (execve(comand, test, envp) == -1)
+			if (execve(ft_strjoin("/bin/", cmd1[0]), cmd1, NULL) == -1)
 			{
 				perror("erro ao exetutar o comando");
 				return (1);

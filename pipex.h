@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amyrodri <amyrodri@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kamys <kamys@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/25 11:11:29 by amyrodri          #+#    #+#             */
-/*   Updated: 2025/08/25 11:26:53 by amyrodri         ###   ########.fr       */
+/*   Updated: 2025/08/25 21:41:49 by kamys            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,5 +20,11 @@
 # include <fcntl.h>
 # include <sys/wait.h>
 # include <string.h>
+
+typedef struct s_cmd
+{
+	char	*path;
+	char	**argv;
+}	t_cmd;
 
 #endif

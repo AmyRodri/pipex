@@ -6,7 +6,7 @@
 /*   By: amyrodri <amyrodri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/25 11:08:15 by amyrodri          #+#    #+#             */
-/*   Updated: 2025/08/26 12:00:40 by amyrodri         ###   ########.fr       */
+/*   Updated: 2025/08/26 14:38:15 by amyrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,10 @@ int	main(int num, char **args, char **envp)
 		return (perror("Error"), 1);
 	pid[0] = fork();
 	if (pid[0] == 0)
-		exec_first(file, fd, parse_cmd(args[2]), envp);
+		exec_first(file, fd, parse_cmd(args[2], envp), envp);
 	pid[1] = fork();
 	if (pid[1] == 0)
-		exec_segund(file, fd, parse_cmd(args[3]), envp);
+		exec_segund(file, fd, parse_cmd(args[3], envp), envp);
 	close(fd[0]);
 	close(fd[1]);
 	waitpid(pid[0], NULL, 0);

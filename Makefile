@@ -7,7 +7,7 @@ INCLUDE = -I libft/srcs/includes
 RM = rm -f
 RUNLIB = -C libft
 
-SRCS = pipex.c pipex_utils.c
+SRCS = pipex.c pipex_utils.c exec.c
 
 OBJS = $(SRCS:.c=.o)
 LIBFT = libft/libft.a

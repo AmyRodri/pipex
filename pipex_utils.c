@@ -6,13 +6,13 @@
 /*   By: amyrodri <amyrodri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/26 11:59:59 by amyrodri          #+#    #+#             */
-/*   Updated: 2025/08/26 12:01:08 by amyrodri         ###   ########.fr       */
+/*   Updated: 2025/08/26 15:52:00 by amyrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-t_cmd	*parse_cmd(char *arg)
+t_cmd	*parse_cmd(char *arg, char **envp)
 {
 	t_cmd	*cmd;
 	char	**splited;
@@ -24,35 +24,46 @@ t_cmd	*parse_cmd(char *arg)
 	splited = ft_split(arg, ' ');
 	if (!splited || !splited[0])
 		return (NULL);
-	path = ft_strjoin("/bin/", splited[0]);
+	path = find_cmd(splited[0], envp);
 	cmd->path = path;
 	cmd->argv = splited;
 	return (cmd);
 }
 
-void	exec_cmd(t_cmd *cmd, char **envp)
+char	*get_path(char **envp)
 {
-	execve(cmd->path, cmd->argv, envp);
-	perror("Erro ao executar o comando");
-	exit(1);
+	int	i;
+
+	i = 0;
+	while (envp[i])
+	{
+		if (ft_strncmp(envp[i], "PATH=", 5) == 0)
+			return (envp[i] + 5);
+		i++;
+	}
+	return (NULL);
 }
 
-int	exec_first(int *file, int *fd, t_cmd *cmd, char **envp)
+char	*find_cmd(char *cmd, char **envp)
 {
-	dup2(file[0], STDIN_FILENO);
-	dup2(fd[1], STDOUT_FILENO);
-	close(fd[0]);
-	close(fd[1]);
-	exec_cmd(cmd, envp);
-	return (1);
-}
+	char	*path_envp;
+	char	**paths;
+	char	*full_path;
+	char	*tmp;
+	int		i;
 
-int	exec_segund(int *file, int *fd, t_cmd *cmd, char **envp)
-{
-	dup2(fd[0], STDIN_FILENO);
-	dup2(file[1], STDOUT_FILENO);
-	close(fd[0]);
-	close(fd[1]);
-	exec_cmd(cmd, envp);
-	return (1);
+	path_envp = get_path(envp);
+	paths = ft_split(path_envp, ':');
+	i = 0;
+	while (paths[i])
+	{
+		tmp = ft_strjoin(paths[i], "/");
+		full_path = ft_strjoin(tmp, cmd);
+		free(tmp);
+		if (access(full_path, X_OK) == 0)
+			return (full_path);
+		free(full_path);
+		i++;
+	}
+	return (NULL);
 }

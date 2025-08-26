@@ -6,7 +6,7 @@
 /*   By: amyrodri <amyrodri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/26 11:59:59 by amyrodri          #+#    #+#             */
-/*   Updated: 2025/08/26 15:52:00 by amyrodri         ###   ########.fr       */
+/*   Updated: 2025/08/26 16:11:35 by amyrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,4 +66,13 @@ char	*find_cmd(char *cmd, char **envp)
 		i++;
 	}
 	return (NULL);
+}
+
+void	closer(int *fds, int len)
+{
+	int	i;
+
+	i = 0;
+	while (i < len)
+		close(fds[i++]);
 }

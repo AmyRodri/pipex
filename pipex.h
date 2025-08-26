@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kamys <kamys@student.42.fr>                +#+  +:+       +#+        */
+/*   By: amyrodri <amyrodri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/25 11:11:29 by amyrodri          #+#    #+#             */
-/*   Updated: 2025/08/25 21:41:49 by kamys            ###   ########.fr       */
+/*   Updated: 2025/08/26 12:01:27 by amyrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,10 @@ typedef struct s_cmd
 	char	*path;
 	char	**argv;
 }	t_cmd;
+
+t_cmd	*parse_cmd(char *arg);
+void	exec_cmd(t_cmd *cmd, char **envp);
+int		exec_first(int *file, int *fd, t_cmd *cmd, char **envp);
+int		exec_segund(int *file, int *fd, t_cmd *cmd, char **envp);
 
 #endif

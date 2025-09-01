@@ -6,7 +6,7 @@
 /*   By: amyrodri <amyrodri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/26 11:59:59 by amyrodri          #+#    #+#             */
-/*   Updated: 2025/08/26 16:11:35 by amyrodri         ###   ########.fr       */
+/*   Updated: 2025/09/01 17:14:41 by amyrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,8 @@ char	*find_cmd(char *cmd, char **envp)
 	char	*tmp;
 	int		i;
 
+	if (access(cmd, X_OK) == 0)
+		return (cmd);
 	path_envp = get_path(envp);
 	paths = ft_split(path_envp, ':');
 	i = 0;

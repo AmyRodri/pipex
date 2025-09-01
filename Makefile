@@ -2,12 +2,12 @@ NAME = pipex
 
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
-INCLUDE = -I libft/srcs/includes
+INCLUDE = -I libft/srcs/includes 
 
 RM = rm -f
 RUNLIB = -C libft
 
-SRCS = pipex.c pipex_utils.c exec.c
+SRCS = mandatory/pipex.c mandatory/pipex_utils.c mandatory/exec.c
 
 OBJS = $(SRCS:.c=.o)
 LIBFT = libft/libft.a

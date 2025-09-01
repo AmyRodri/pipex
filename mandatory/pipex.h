@@ -6,14 +6,14 @@
 /*   By: amyrodri <amyrodri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/25 11:11:29 by amyrodri          #+#    #+#             */
-/*   Updated: 2025/08/26 16:33:09 by amyrodri         ###   ########.fr       */
+/*   Updated: 2025/09/01 17:35:48 by amyrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PIPEX_H
 # define PIPEX_H
 
-# include "libft/srcs/includes/libft.h"
+# include "../libft/srcs/includes/libft.h"
 # include <stdarg.h>
 # include <stdio.h>
 # include <unistd.h>

@@ -9,7 +9,11 @@ RUNLIB = -C libft
 
 SRCS = mandatory/pipex.c mandatory/pipex_utils.c mandatory/exec.c
 
+SRCSBONUS = bonus/pipex_bonus.c bonus/pipex_utils_bonus.c bonus/exec_bonus.c
+
 OBJS = $(SRCS:.c=.o)
+OBJSBONUS = $(SRCSBONUS:.c=.o)
+
 LIBFT = libft/libft.a
 
 all: $(NAME)
@@ -23,8 +27,11 @@ $(NAME): $(OBJS) $(LIBFT)
 $(LIBFT):
 	$(MAKE) $(RUNLIB)
 
+bonus: $(OBJSBONUS) $(LIBFT)
+	$(CC) $(CFLAGS) $(INCLUDE) $(OBJSBONUS) $(LIBFT) -o $(NAME)
+
 clean:
-	$(RM) $(OBJS)
+	$(RM) $(OBJS) $(OBJSBONUS)
 	$(MAKE) clean $(RUNLIB)
 
 fclean: clean

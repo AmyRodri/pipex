@@ -6,7 +6,7 @@
 /*   By: amyrodri <amyrodri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/25 11:08:15 by amyrodri          #+#    #+#             */
-/*   Updated: 2025/09/01 19:39:31 by amyrodri         ###   ########.fr       */
+/*   Updated: 2025/09/02 14:59:21 by amyrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 int	main(int num, char **args, char **envp)
 {
-	int	(**pipes)[2];
+	int	(*pipes)[2];
 	int	file[2];
 	int	i;
 
-	if (num <= 5)
+	if (num < 4)
 		return (1);
 	file[0] = open(args[1], O_RDONLY);
 	file[1] = open(args[num - 1], O_WRONLY | O_CREAT | O_TRUNC, 0644);
@@ -33,7 +33,7 @@ int	main(int num, char **args, char **envp)
 		i++;
 	}
 	exec_all(file, pipes, args, envp);
-	closer_pipes(pipes, num - 4);
+	closer_pipes(pipes, num - 4, -1);
 	closer_files(file, 2);
 	free(pipes);
 	return (0);

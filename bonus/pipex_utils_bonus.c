@@ -6,7 +6,7 @@
 /*   By: amyrodri <amyrodri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/26 11:59:59 by amyrodri          #+#    #+#             */
-/*   Updated: 2025/09/01 19:18:14 by amyrodri         ###   ########.fr       */
+/*   Updated: 2025/09/02 12:15:07 by amyrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,13 +70,15 @@ char	*find_cmd(char *cmd, char **envp)
 	return (NULL);
 }
 
-void	closer_pipes(int (**pipes)[2], int len)
+void	closer_pipes(int (*pipes)[2], int len, int j)
 {
 	int	i;
 
 	i = 0;
 	while (i < len)
 	{
+		if (i == j)
+			continue ;
 		close(pipes[i][0]);
 		close(pipes[i][1]);
 		i++;

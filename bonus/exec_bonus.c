@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kamys <kamys@student.42.fr>                +#+  +:+       +#+        */
+/*   By: amyrodri <amyrodri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/26 14:24:30 by amyrodri          #+#    #+#             */
-/*   Updated: 2025/09/02 22:09:04 by kamys            ###   ########.fr       */
+/*   Updated: 2025/09/03 10:36:43 by amyrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,4 +52,3 @@ int	exec_all(int *file, int (*pipes)[2], char **args, char **envp)
 	wait_closer(file, n_cmds);
 	return (0);
 }
-

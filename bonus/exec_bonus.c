@@ -6,7 +6,7 @@
 /*   By: amyrodri <amyrodri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/26 14:24:30 by amyrodri          #+#    #+#             */
-/*   Updated: 2025/09/03 10:36:43 by amyrodri         ###   ########.fr       */
+/*   Updated: 2025/09/03 10:52:55 by amyrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	exec_cmd(t_cmd *cmd, char **envp)
 	exit(1);
 }
 
-static void	parent_exec(int (*pipes)[2], int n_cmds, int i, pid_t pid)
+void	parent_exec(int (*pipes)[2], int n_cmds, int i, pid_t pid)
 {
 	if (pid < 0)
 		perror("fork failed");

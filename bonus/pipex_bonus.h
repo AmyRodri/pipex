@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kamys <kamys@student.42.fr>                +#+  +:+       +#+        */
+/*   By: amyrodri <amyrodri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/25 11:11:29 by amyrodri          #+#    #+#             */
-/*   Updated: 2025/09/02 19:47:05 by kamys            ###   ########.fr       */
+/*   Updated: 2025/09/03 10:52:46 by amyrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,17 +27,18 @@ typedef struct s_cmd
 	char	**argv;
 }	t_cmd;
 
+void		exec_cmd(t_cmd *cmd, char **envp);
+void		parent_exec(int (*pipes)[2], int n_cmds, int i, pid_t pid);
+int			exec_all(int *file, int (*pipes)[2], char **args, char **envp);
+
+void		closer_pipes(int (*pipes)[2], int len, int j);
+void		closer_files(int *files, int len);
+void		setup_pipes_fds(int *file, int (*pipes)[2], int ncmds, int i);
+int			wait_closer(int *file, int n_cmds);
+
 t_cmd		*parse_cmd(char *arg, char **envp);
 char		*get_path(char **envp);
 char		*find_cmd(char *cmd, char **envp);
-void		closer_pipes(int (*pipes)[2], int len, int j);
-void		closer_files(int *files, int len);
-
-void		setup_pipes_fds(int *file, int (*pipes)[2], int ncmds, int i);
 int			ft_argslen(char **arg);
-int			wait_closer(int *file, int n_cmds);
-static void	parent_exec(int (*pipes)[2], int n_cmds, int i, pid_t pid);
-void		exec_cmd(t_cmd *cmd, char **envp);
-int			exec_all(int *file, int (*pipes)[2], char **args, char **envp);
 
 #endif

@@ -7,9 +7,14 @@ INCLUDE = -I libft/srcs/includes
 RM = rm -f
 RUNLIB = -C libft
 
-SRCS = mandatory/pipex.c mandatory/pipex_utils.c mandatory/exec.c
+SRCS = mandatory/pipex.c 				\
+		mandatory/pipex_utils.c 		\
+		mandatory/exec.c				\
 
-SRCSBONUS = bonus/pipex_bonus.c bonus/pipex_utils_bonus.c bonus/exec_bonus.c
+SRCSBONUS = bonus/pipex_bonus.c 		\
+			bonus/pipex_fd.c			\
+			bonus/exec_bonus.c 			\
+			bonus/pipex_utils_bonus.c	\
 
 OBJS = $(SRCS:.c=.o)
 OBJSBONUS = $(SRCSBONUS:.c=.o)

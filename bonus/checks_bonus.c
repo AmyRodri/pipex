@@ -1,34 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex_bonus.c                                      :+:      :+:    :+:   */
+/*   checks_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amyrodri <amyrodri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/25 11:08:15 by amyrodri          #+#    #+#             */
-/*   Updated: 2025/09/04 13:30:04 by amyrodri         ###   ########.fr       */
+/*   Created: 2025/09/04 13:39:02 by amyrodri          #+#    #+#             */
+/*   Updated: 2025/09/04 13:39:30 by amyrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex_bonus.h"
 
-int	main(int num, char **args, char **envp)
+int	check_here_d(char *here_d)
 {
-	int	(*pipes)[2];
-	int	file[2];
-	int	n_cmds;
-
-	if (check_args(args, num, file))
+	if (ft_strncmp(here_d, "here_doc", 9) == 0)
 		return (1);
-	if (!check_here_d(args[1]))
-		n_cmds = num - 3;
-	else
-		n_cmds = num - 4;
-	pipes = malloc((n_cmds - 1) * sizeof(*pipes));
-	start_pipes(pipes, num);
-	exec_all(file, pipes, args, envp);
-	closer_pipes(pipes, num - 4, -1);
-	closer_files(file, 2);
-	free(pipes);
+	return (0);
+}
+
+int	check_args(char **args, int num, int file[2])
+{
+	if (num < 4)
+		return (1);
+	if (setup_here_d(args, file, num))
+		return (1);
 	return (0);
 }

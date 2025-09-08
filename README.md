@@ -139,3 +139,28 @@ Durante a implementação do `pipex`, você irá trabalhar com vários conceitos
 > `cat` passa todo o texto recebido para o próximo comando.  
 > `wc -w` conta as palavras.  
 > O resultado é acrescentado ao final de outfile (append).  
+
+---
+
+## 👩‍💻 Autoria
+
+**✨ Amy Rodrigues ✨** 
+
+🎓 Estudante de C e desenvolvimento de baixo nível na [42 São Paulo](https://www.42sp.org.br/)
+
+🐧 Usuária de Linux | 💻 Fã de terminal | 🎯 Apaixonada por entender como tudo funciona por trás dos bastidores
+
+---
+
+## 📎 Licença
+
+Este projeto foi desenvolvido como parte do currículo educacional da 42 São Paulo.
+
+📘 **Uso permitido**:
+- Pode ser utilizado como referência para estudos e aprendizado individual
+- Pode servir de inspiração para seus próprios projetos
+
+🚫 **Proibido**:
+- Submeter cópias deste projeto como se fossem de sua autoria em avaliações da 42 ou outras instituições
+
+Seja ético e contribua para uma comunidade de desenvolvedores mais honesta e colaborativa 🤝

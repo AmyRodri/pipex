@@ -6,7 +6,7 @@
 /*   By: kamys <kamys@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 19:50:46 by kamys             #+#    #+#             */
-/*   Updated: 2025/09/09 19:49:34 by kamys            ###   ########.fr       */
+/*   Updated: 2025/09/09 19:54:16 by kamys            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	closer_files(int *files, int len)
 		close(files[i++]);
 }
 
-int free_exit(int (*pipes)[2], int ret)
+int	free_exit(int (*pipes)[2], int ret)
 {
 	free(pipes);
 	return (ret);

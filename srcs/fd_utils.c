@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex_fd.c                                         :+:      :+:    :+:   */
+/*   fd_utils.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amyrodri <amyrodri@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kamys <kamys@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 19:50:46 by kamys             #+#    #+#             */
-/*   Updated: 2025/09/03 10:36:37 by amyrodri         ###   ########.fr       */
+/*   Updated: 2025/09/09 19:49:34 by kamys            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex_bonus.h"
+#include "pipex.h"
 
 void	closer_pipes(int (*pipes)[2], int len, int j)
 {
@@ -36,32 +36,10 @@ void	closer_files(int *files, int len)
 		close(files[i++]);
 }
 
-void	setup_pipes_fds(int *file, int (*pipes)[2], int ncmds, int i)
+int free_exit(int (*pipes)[2], int ret)
 {
-	int	j;
-
-	if (i == 0)
-	{
-		dup2(file[0], STDIN_FILENO);
-		dup2(pipes[0][1], STDOUT_FILENO);
-	}
-	else if (i == ncmds - 1)
-	{
-		dup2(pipes[i - 1][0], STDIN_FILENO);
-		dup2(file[1], STDOUT_FILENO);
-	}
-	else
-	{
-		dup2(pipes[i - 1][0], STDIN_FILENO);
-		dup2(pipes[i][1], STDOUT_FILENO);
-	}
-	j = 0;
-	while (j < ncmds - 1)
-	{
-		close(pipes[j][0]);
-		close(pipes[j][1]);
-		j++;
-	}
+	free(pipes);
+	return (ret);
 }
 
 int	wait_closer(int *file, int n_cmds)

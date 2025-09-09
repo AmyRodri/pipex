@@ -1,36 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex_utils_bonus.c                                :+:      :+:    :+:   */
+/*   parce.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amyrodri <amyrodri@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kamys <kamys@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/26 11:59:59 by amyrodri          #+#    #+#             */
-/*   Updated: 2025/09/03 10:35:52 by amyrodri         ###   ########.fr       */
+/*   Updated: 2025/09/09 19:49:42 by kamys            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex_bonus.h"
+#include "pipex.h"
 
-t_cmd	*parse_cmd(char *arg, char **envp)
-{
-	t_cmd	*cmd;
-	char	**splited;
-	char	*path;
-
-	cmd = malloc(sizeof(t_cmd));
-	if (!cmd)
-		return (NULL);
-	splited = ft_split(arg, ' ');
-	if (!splited || !splited[0])
-		return (NULL);
-	path = find_cmd(splited[0], envp);
-	cmd->path = path;
-	cmd->argv = splited;
-	return (cmd);
-}
-
-char	*get_path(char **envp)
+static char	*get_path(char **envp)
 {
 	int	i;
 
@@ -44,7 +26,7 @@ char	*get_path(char **envp)
 	return (NULL);
 }
 
-char	*find_cmd(char *cmd, char **envp)
+static char	*find_cmd(char *cmd, char **envp)
 {
 	char	*path_envp;
 	char	**paths;
@@ -68,6 +50,24 @@ char	*find_cmd(char *cmd, char **envp)
 		i++;
 	}
 	return (NULL);
+}
+
+t_cmd	*parse_cmd(char *arg, char **envp)
+{
+	t_cmd	*cmd;
+	char	**splited;
+	char	*path;
+
+	cmd = malloc(sizeof(t_cmd));
+	if (!cmd)
+		return (NULL);
+	splited = ft_split(arg, ' ');
+	if (!splited || !splited[0])
+		return (NULL);
+	path = find_cmd(splited[0], envp);
+	cmd->path = path;
+	cmd->argv = splited;
+	return (cmd);
 }
 
 int	ft_argslen(char **arg)

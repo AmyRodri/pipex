@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tmp_bonus.c                                        :+:      :+:    :+:   */
+/*   here_d_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amyrodri <amyrodri@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kamys <kamys@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/04 13:29:47 by amyrodri          #+#    #+#             */
-/*   Updated: 2025/09/04 13:39:26 by amyrodri         ###   ########.fr       */
+/*   Updated: 2025/09/09 19:00:19 by kamys            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex_bonus.h"
+#include "pipex.h"
 
-void	write_here_doc(int fd, char *limiter)
+static void	write_here_doc(int fd, char *limiter)
 {
 	char	*line;
 
@@ -65,7 +65,7 @@ int	start_pipes(int (*pipes)[2], int num)
 	int	i;
 
 	i = 0;
-	while (num - 4 > i)
+	while (num - 1 > i)
 	{
 		if (pipe(pipes[i]) == -1)
 			return (perror("Error pipe"), 1);

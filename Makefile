@@ -2,24 +2,19 @@ NAME = pipex
 
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
-INCLUDE = -I libft/srcs/includes 
+INCLUDE = -I libft/srcs/includes -I includes
 
 RM = rm -f
 RUNLIB = -C libft
 
-SRCS = mandatory/pipex.c 				\
-		mandatory/pipex_utils.c 		\
-		mandatory/exec.c				\
-
-SRCSBONUS = bonus/pipex_bonus.c 		\
-			bonus/pipex_fd.c			\
-			bonus/exec_bonus.c 			\
-			bonus/pipex_utils_bonus.c	\
-			bonus/here_d_utils_bonus.c	\
-			bonus/checks_bonus.c		\
+SRCS = srcs/pipex.c 			\
+			srcs/fd_utils.c		\
+			srcs/exec.c 		\
+			srcs/utils.c		\
+			srcs/here_doc.c		\
+			srcs/checks.c		\
 
 OBJS = $(SRCS:.c=.o)
-OBJSBONUS = $(SRCSBONUS:.c=.o)
 
 LIBFT = libft/libft.a
 
@@ -34,11 +29,8 @@ $(NAME): $(OBJS) $(LIBFT)
 $(LIBFT):
 	$(MAKE) $(RUNLIB)
 
-bonus: $(OBJSBONUS) $(LIBFT)
-	$(CC) $(CFLAGS) $(INCLUDE) $(OBJSBONUS) $(LIBFT) -o $(NAME)
-
 clean:
-	$(RM) $(OBJS) $(OBJSBONUS)
+	$(RM) $(OBJS)
 	$(MAKE) clean $(RUNLIB)
 
 fclean: clean

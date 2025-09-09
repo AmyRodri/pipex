@@ -3,30 +3,47 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amyrodri <amyrodri@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kamys <kamys@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/25 11:08:15 by amyrodri          #+#    #+#             */
-/*   Updated: 2025/08/26 17:13:44 by amyrodri         ###   ########.fr       */
+/*   Updated: 2025/09/09 19:20:38 by kamys            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
+static int	(*pipes_setup(int num, char **args, int *file, int *n_cmds))[2]
+{
+	int	(*pipes)[2];
+
+	if (check_args(args, num, file))
+		return (NULL);
+	if (!check_here_d(args[1]))
+		*n_cmds = num - 3;
+	else
+		*n_cmds = num - 4;
+	pipes = malloc((*n_cmds - 1) * sizeof(*pipes));
+	if (!pipes)
+		return (NULL);
+	if (start_pipes(pipes, *n_cmds))
+	{
+		free(pipes);
+		return (NULL);
+	}
+	return (pipes);
+}
+
 int	main(int num, char **args, char **envp)
 {
-	int		file[2];
-	int		fd[2];
+	int	(*pipes)[2];
+	int	file[2];
+	int	n_cmds;
 
-	if (num != 5)
+	pipes = pipes_setup(num, args, file, &n_cmds);
+	if (!pipes)
 		return (1);
-	file[0] = open(args[1], O_RDONLY);
-	file[1] = open(args[num - 1], O_WRONLY | O_CREAT | O_TRUNC, 0644);
-	if (file[0] < 0 || file[1] < 0)
-		return (perror("Error file"), 1);
-	if (pipe(fd) == -1)
-		return (perror("Error pipe"), 1);
-	exec_all(file, fd, args, envp);
-	closer(fd, 2);
-	closer(file, 2);
+	if (exec_all(file, pipes, args, envp))
+		return (free_exit(pipes, 1));
+	free(pipes);
 	return (0);
 }

@@ -31,7 +31,7 @@ $(LIBFT):
 
 clean:
 	$(RM) $(OBJS)
-	$(MAKE) clean $(RUNLIB)
+	$(MAKE) fclean $(RUNLIB)
 
 fclean: clean
 	$(RM) $(NAME) $(LIBFT)

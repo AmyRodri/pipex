@@ -6,7 +6,7 @@
 /*   By: kamys <kamys@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/25 11:11:29 by amyrodri          #+#    #+#             */
-/*   Updated: 2025/09/09 19:50:35 by kamys            ###   ########.fr       */
+/*   Updated: 2025/09/10 00:58:58 by kamys            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ void	closer_pipes(int (*pipes)[2], int len, int j);
 void	closer_files(int *files, int len);
 int 	free_exit(int (*pipes)[2], int ret);
 int		wait_closer(int *file, int n_cmds);
+
+char	**ft_split_quotes(const char *s, char c);
 
 // utils.c
 t_cmd	*parse_cmd(char *arg, char **envp);

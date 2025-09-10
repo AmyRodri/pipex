@@ -7,12 +7,13 @@ INCLUDE = -I libft/srcs/includes -I includes
 RM = rm -f
 RUNLIB = -C libft
 
-SRCS = srcs/pipex.c 			\
-			srcs/fd_utils.c		\
-			srcs/exec.c 		\
-			srcs/utils.c		\
-			srcs/here_doc.c		\
-			srcs/checks.c		\
+SRCS = srcs/pipex.c 				\
+			srcs/fd_utils.c			\
+			srcs/exec.c 			\
+			srcs/utils.c			\
+			srcs/here_doc.c			\
+			srcs/checks.c			\
+			srcs/ft_split_quotes.c	\
 
 OBJS = $(SRCS:.c=.o)
 

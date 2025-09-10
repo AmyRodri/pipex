@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parce.c                                            :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kamys <kamys@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/26 11:59:59 by amyrodri          #+#    #+#             */
-/*   Updated: 2025/09/09 19:49:42 by kamys            ###   ########.fr       */
+/*   Updated: 2025/09/10 01:01:02 by kamys            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ t_cmd	*parse_cmd(char *arg, char **envp)
 	cmd = malloc(sizeof(t_cmd));
 	if (!cmd)
 		return (NULL);
-	splited = ft_split(arg, ' ');
+	splited = ft_split_quotes(arg, ' ');
 	if (!splited || !splited[0])
 		return (NULL);
 	path = find_cmd(splited[0], envp);
